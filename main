@@ -1,0 +1,70 @@
+	@ Start of file Parity.s
+     	@
+     	@ Copyright 2020 University of Dublin. All Rights Reserved.
+     	@
+     	@ Design and write an assembly language program that 
+     	@ will calculate the parity bit for a 7 bit value stored in r0. 
+     	@ 
+     	@ The program should then store the computed parity bit 
+     	@ in bit 7 of r0. Assume even parity.
+    	@ 
+    	@ Using even parity, the parity bit of a value is set such that the 
+    	@ number of set bits (1's) in a value is always even.
+    	@ 
+    	
+    	
+    		.text
+    	
+    	start:
+    	
+    		LDR	r0, =0x16
+    	
+    	
+    	@ Upload the code that goes between the dashed lines.
+    	@ -------------- start cut ------------------------
+    	
+    	     mov r12,#64
+    	     mov r1,r0, ASR #6
+    	     mov r1,r1, LSL #6
+    	     and r1,r1,r12
+    	
+    	     eor r8,r1,r8
+    	     mov r2,r0, ASR #5
+    	     mov r2,r2, LSL #6
+    	     and r2,r2,r12
+    	
+    	     eor r8,r2,r8
+    	     mov r3,r0, ASR #4
+    	     mov r3,r3, LSL #6
+    	     and r3,r3,r12
+    	
+    	     eor r8,r3,r8
+    	     mov r4,r0, ASR #3
+    	     mov r4,r4, LSL #6
+    	     and r4,r4,r12
+    	
+    	     eor r8,r4,r8
+    	     mov r5,r0, ASR #2
+    	     mov r5,r5, LSL #6
+    	     and r5,r5,r12
+    	
+    	     eor r8,r5,r8
+    	     mov r6,r0, ASR #1
+    	     mov r6,r6, LSL #6
+    	     and r6,r6,r12
+    	
+    	     eor r8,r6,r8
+    	     mov r7,r0, LSL #6
+    	     and r7,r7,r12
+    	
+    	     eor r8,r7,r8
+    	     mov r8,r8, LSL #1
+    	     EOR R0,R8,R0
+    	
+    	@ -------------- end cut --------------------------
+    	
+    	stop:   B	stop
+    		.data
+    		.end
+    	@
+    	@ End of file Parity.s
